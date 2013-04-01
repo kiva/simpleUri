@@ -1,5 +1,5 @@
 var $ = require('jquery');
 
-//> add simpleUri.js
+//= ../src/simpleUri.js
 
 module.export = uri;

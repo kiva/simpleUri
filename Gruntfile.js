@@ -42,8 +42,8 @@ module.exports = function(grunt) {
                     banner: '<%= meta.banner %>'
                 }
                 , files: {
-                    'build/backbone.siren.min.js': ['build/backbone.siren.js']
-                    , 'build/amd/backbone.siren.min.js': ['build/amd/backbone.siren.js']
+                    'dist/simpleUri.min.js': ['dist/simpleUri.js']
+                    , 'dist/amd/simpleUri.min.js': ['dist/amd/simpleUri.js']
                 }
             }
         }
@@ -55,8 +55,9 @@ module.exports = function(grunt) {
                     banner: '<%= meta.banner %>'
                 },
                 files: {
-                    'build/backbone.siren.js': ['src/build/_core.js']
-                    , 'build/amd/backbone.siren.js': ['src/build/_amd.js']
+                    'dist/simpleUri.js': ['build/core.js']
+                    , 'dist/amd/simpleUri.js': ['build/core.amd.js']
+                    , 'dist/common/simpleUri.js': ['build/core.common.js']
                 }
             }
         }

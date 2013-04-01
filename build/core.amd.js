@@ -1,5 +1,8 @@
 define(function (require) {
 
-    //> add core.common.js
+    var $ = require('jquery');
 
+    //= ../src/simpleUri.js
+
+    return uri;
 });

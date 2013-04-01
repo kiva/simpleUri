@@ -1,6 +1,6 @@
 (function ($, global, undefined) {
 
-    //> add simpleUri.js
+    //= ../src/simpleUri.js
 
     global.uri = uri;
 
