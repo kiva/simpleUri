@@ -26,8 +26,6 @@
 
 	, "predef": [
 		"define"
-		, "Backbone"
-		, "_"
 
         , "buster"
 		, "afterEach"
