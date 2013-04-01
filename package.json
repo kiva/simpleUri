@@ -1,0 +1,33 @@
+{
+    "name": "simpleUri",
+    "version": "0.1.0",
+    "description": "Lightweight uri parsing and url manipulation library",
+    "main": "index.js",
+    "scripts": {
+        "test": "grunt test --verbose",
+        "prepublish": "bower install"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git://github.com/kiva/simpleUri.git"
+    },
+    "keywords": [
+        "kiva",
+        "uri",
+        "url",
+        "uri parser",
+        "url parser",
+        "window.location"
+    ],
+    "license": "BSD",
+    "readmeFilename": "readme.md",
+    "devDependencies": {
+        "buster": "~0.6.12",
+        "buster-coverage": "~0.1.0",
+        "grunt": "~0.4.1",
+        "grunt-buster": "~0.1.2",
+        "grunt-contrib-jshint": "~0.1.1rc6",
+        "grunt-contrib-uglify": "~0.1.2",
+        "grunt-rigger": "~0.4.0"
+    }
+}

@@ -36,6 +36,10 @@ function uri(uriString, strictMode) {
      * @private
      */
     uriObj._getParam = function (type, param) {
+        if (param === undefined) {
+            return uriObj._param[type];
+        }
+
         return uriObj._param[type][param];
     };
 
@@ -53,10 +57,10 @@ function uri(uriString, strictMode) {
         var data = uriObj._param[type]
         , paramObj
         , paramString
-        ,  prefix = type == 'query' ? '?' : '#';
+        , prefix = type == 'query' ? '?' : '#';
 
 
-        paramObj = $.extend({}, uriObj, newData);
+        paramObj = $.extend({}, data, newData);
         paramString = prefix + $.param(paramObj);
 
         // Are we operating on the current url?  If so, load the page with the new params.
@@ -84,7 +88,7 @@ function uri(uriString, strictMode) {
     uriObj._paramProcess = function (type, keysOrObj) {
 
         if (! keysOrObj || typeof keysOrObj == 'string') {
-            return this._getParam(type, keysOrObj)
+            return this._getParam(type, keysOrObj);
         } else {
             return this._setParam(type, keysOrObj);
         }
@@ -186,6 +190,10 @@ uri.parseString = function (str) {
     var i, pair, length
     , arr = str.split(/&|;/)
     , obj = {};
+
+    if (!str) {
+        return obj;
+    }
 
     for (i = 0; i < arr.length; ++i) {
         pair = arr[i].split('=');
