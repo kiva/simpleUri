@@ -5,7 +5,7 @@ buster.spec.expose();
 
 
 describe('.uri()', function () {
-    var mockUri = '@todo';
+//    var mockUri = '@todo';
     var mockUrl = 'http://kiva.org/path/folder/file.html?param1=one&param2=two#param1=uno&param2=dos';
 
 
