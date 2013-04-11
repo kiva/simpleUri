@@ -4,49 +4,6 @@
 buster.spec.expose();
 
 
-function getParamsTests(method) {
-    var expectedParams
-        , mockUrl = 'http://kiva.org/path/folder/file.html?param1=one&param2=two#param1=uno&param2=dos';
-
-    if (method == 'hashParam') {
-        expectedParams = {
-            param1: 'uno'
-            , param2: 'dos'
-        };
-    } else if (method == 'queryParam') {
-        expectedParams = {
-            param1: 'one'
-            , param2: 'two'
-        };
-    } else if (method == 'param') {
-        mockUrl = 'http://kiva.org/path/folder/file.html?param1=one&param2=two&queryParam=qpVal#param1=uno&param2=dos&hashParam=hpVal';
-
-        expectedParams = {
-            param1: 'uno'
-            , param2: 'dos'
-            , queryParam: 'qpVal'
-            , hashParam: 'hpVal'
-        };
-    }
-
-
-    it('returns an object, representing the hash parameters', function () {
-        expect(uri(mockUrl)[method]()).toEqual(expectedParams);
-        expect(uri('http://url.com/test')[method]()).toEqual({});
-    });
-
-
-    it('accepts a string, returns the value of that parameter', function () {
-        expect(uri(mockUrl)[method]('param1')).toBe(expectedParams.param1);
-    });
-
-
-    it('returns undefined if the parameter is not found in the url hash', function () {
-        expect(uri(mockUrl)[method]('param3')).toBe(undefined);
-    });
-}
-
-
 describe('.uri()', function () {
     var mockUri = '@todo';
     var mockUrl = 'http://kiva.org/path/folder/file.html?param1=one&param2=two#param1=uno&param2=dos';
@@ -145,113 +102,113 @@ describe('.uri()', function () {
 
 
     describe('.open()', function () {
-        it('//.open() opens new window', function () {
-            var newWindow = kv.url('basket').open(undefined, 'width=0,height=0');
+        it('opens a new window', function () {
+            var newWindow = uri('basket').open(undefined, 'width=0,height=0');
             newWindow.close();
 
-            // The jasmine.any() check seems to fail when used on the Window object
-            expect(newWindow.toString()).toContain('Window');
+            expect(newWindow.toString()).toMatch('Window');
         });
     });
 
 
     describe('.load()', function () {
-        it('//.load() loads a new url -- not testable', function () {
-            expect(kv.url().load).toBeDefined();
+        it('loads a new url -- not testable', function () {
+            expect(uri().load).toBeDefined();
         });
     });
 
 
-    describe('reload()', function () {
-        it('//.reload() reloads the current url -- not testable', function () {
-            expect(kv.url().reload).toBeDefined();
+    describe('.reload()', function () {
+        it('reloads the current url -- not testable', function () {
+            expect(uri().reload).toBeDefined();
         });
     });
 
 
-    describe('kv.url().segment()', function () {
-        it('//returns an array of all segments', function () {
-            expect(kv.url(mockUrl).segment()).toEqual(['path', 'folder', 'file.html']);
+    describe('.segment()', function () {
+        it('returns an array of all segments', function () {
+            expect(uri(mockUrl).segment()).toEqual(['path', 'folder', 'file.html']);
         });
 
-        it('//returns the segment corresponding to the index requested', function () {
-            expect(kv.url(mockUrl).segment(1)).toBe('path');
+        it('returns the segment corresponding to the index requested', function () {
+            expect(uri(mockUrl).segment(1)).toBe('path');
         });
 
-        it('//returns the segment corresponding to the negative index requested', function () {
-            expect(kv.url(mockUrl).segment(-1)).toBe('file.html');
+        it('returns the segment corresponding to the negative index requested', function () {
+            expect(uri(mockUrl).segment(-1)).toBe('file.html');
         });
     });
 
 
-    describe('kv.url().param()', function () {
-        getParamsTests('param');
+    describe('.param', function () {
+        var mockUrl = 'http://kiva.org/path/folder/file.html?param1=one&param2=two&queryParam=qpVal#param1=uno&param2=dos&hashParam=hpVal'
+        , expectedParams = {
+            param1: 'uno'
+            , param2: 'dos'
+            , queryParam: 'qpVal'
+            , hashParam: 'hpVal'
+        };
 
-        it('//will not work as a setter, and will notify users if they try to use it as one', function () {
+        it('gets parameters', function () {
+            expect(uri(mockUrl).param()).toEqual(expectedParams);
+        });
+
+        it('cannot set parameters, will throw if you try', function () {
             expect(function () {
                 uri().param({});
             }).toThrow();
         });
     });
-});
 
 
-function setParamsTests(method) {
-    var expectedHashParams
-        , expectedQueryParams
-        , mockUrl = 'http://kiva.org/path/folder/file.html?param1=one&param2=two#param1=uno&param2=dos';
+    describe('.hashParam', function () {
+        var expectedParams
+        , mockUrl = 'http://kiva.org/path/folder/file.html?param1=one&param2=two&queryParam=qpVal#param1=uno&param2=dos&hashParam=hpVal';
 
-    it('sets url parameters', function () {
-        if (method == 'hashParam') {
-            expectedHashParams = {
-                param1: 'override'
-                , param2: 'dos'
-                , row: 'boat'
-                , round: 'house'
-            };
-
-            expectedQueryParams = {
-                param1: 'one'
-                , param2: 'two'
-            };
-        } else {
-            expectedHashParams = {
+        it('gets parameters', function () {
+            expectedParams = {
                 param1: 'uno'
                 , param2: 'dos'
+                , hashParam: 'hpVal'
             };
 
-            expectedQueryParams = {
+            expect(uri(mockUrl).hashParam()).toEqual(expectedParams);
+        });
+
+        it('sets parameters', function () {
+            expectedParams = {
+                param1: 'override'
+                , param2: 'dos'
+                , hashParam: 'hpVal'
+            };
+
+            expect(uri(mockUrl).hashParam({param1: 'override'})).toEqual(expectedParams);
+        });
+    });
+
+
+    describe('.queryParam', function () {
+        var mockUrl = 'http://kiva.org/path/folder/file.html?param1=one&param2=two&queryParam=qpVal#param1=uno&param2=dos&hashParam=hpVal'
+        , expectedParams;
+
+        it('gets parameters', function () {
+            expectedParams = {
+                param1: 'one'
+                , param2: 'two'
+                , queryParam: 'qpVal'
+            };
+
+            expect(uri(mockUrl).queryParam()).toEqual(expectedParams);
+        });
+
+        it('sets parameters', function () {
+            expectedParams = {
                 param1: 'override'
                 , param2: 'two'
-                , row: 'boat'
-                , round: 'house'
+                , queryParam: 'qpVal'
             };
-        }
 
-
-        var kvUrl = kv.url(mockUrl)
-            , kvUrlObj = kvUrl[method]({param1: 'override', row: 'boat', round: 'house'})
-            , params = kvUrlObj[method]();
-
-        if (method == 'hashParam') {
-            expect(params).toEqual(expectedHashParams);
-        } else {
-            expect(params).toEqual(expectedQueryParams);
-        }
-
-        // No guarantee of what order the params will be in the string, so test each piece
-        expect(kvUrl.path()).toEqual(kv.url(mockUrl).path());
-        expect(kvUrl.hashParam()).toEqual(expectedHashParams);
-        expect(kvUrl.queryParam()).toEqual(expectedQueryParams);
+            expect(uri(mockUrl).queryParam({param1: 'override'})).toEqual(expectedParams);
+        });
     });
-
-
-    // @todo
-    xit('will update the current url, with the new params', function () {
-        var kvUrl = kv.url()
-            , loadSpy = spyOn(kvUrl, 'load');
-
-        kvUrl.hashParam({newParam: 'blah'});
-        expect(loadSpy).toHaveBeenCalled();
-    });
-}
+});

@@ -65,16 +65,17 @@ function uri(uriString, strictMode) {
 
         // Are we operating on the current url?  If so, load the page with the new params.
         if (decodeURI(window.location.href) == uriObj.href) {
-            uri(paramString).load();
+            return uri(paramString).reload();
         } else {
             if (type == 'query') {
-                paramString = paramString + '#' + data;
+                paramString = paramString + '#' + uriObj.hash;
             } else {
-                paramString = '?' + data + paramString;
+                paramString = '?' + uriObj.query + paramString;
             }
-        }
 
-        return uri(this.protocol + '://' + uriObj.host + uriObj.path + paramString).param();
+            uriObj = uri(this.protocol + '://' + uriObj.host + uriObj.path + paramString);
+            return paramObj;
+        }
     };
 
 
@@ -114,7 +115,7 @@ function uri(uriString, strictMode) {
     /**
      *
      * @param keysOrHashObj
-     * @return {*}
+     * @return {Object}
      */
     uriObj.hashParam = function (keysOrHashObj) {
         return uriObj._paramProcess('hash', keysOrHashObj);
@@ -124,7 +125,7 @@ function uri(uriString, strictMode) {
     /**
      *
      * @param keysOrQueryObj
-     * @return {*}
+     * @return {Object}
      */
     uriObj.queryParam = function (keysOrQueryObj) {
         return uriObj._paramProcess('query', keysOrQueryObj);
@@ -148,10 +149,19 @@ function uri(uriString, strictMode) {
      */
     uriObj.load = function (bustCache) {
         if (uriObj.href === window.location.href) {
-            window.location.reload(bustCache);
+            uriObj.reload(bustCache);
         } else {
             window.location.assign(uriObj.href);
         }
+    };
+
+
+    /**
+     *
+     * @param bustCache
+     */
+    uriObj.reload = function (bustCache) {
+        window.location.reload(bustCache);
     };
 
 
@@ -172,7 +182,7 @@ function uri(uriString, strictMode) {
         if (seg === undefined) {
             return uriObj._seg.path;
         } else {
-            seg = seg < 0 ? uriObj.seg.path.length + seg : seg - 1; // negative segments count from the end
+            seg = seg < 0 ? uriObj._seg.path.length + seg : seg - 1; // negative segments count from the end
             return uriObj._seg.path[seg];
         }
     };
