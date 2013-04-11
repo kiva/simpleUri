@@ -9,7 +9,32 @@ Addresses four use-cases:
 
 ## Use
 
-@todo
+
+```
+uri().href
+uri().protocol
+uri().authority
+uri().userInfo
+uri().user
+uri().password
+uri().host
+uri().port
+uri().relative
+uri().path
+uri().directory
+uri().file
+uri().query
+uri().hash
+
+uri().param()
+uri().queryParam()
+uri().hashParam()
+uri().open()
+uri().load()
+uri().reload()
+uri().replace()
+uri().segment()
+```
 
 ## Development
 
