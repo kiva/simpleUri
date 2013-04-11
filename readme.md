@@ -9,7 +9,6 @@ Addresses four use-cases:
 
 ## Use
 
-
 ```
 uri().href
 uri().protocol
@@ -50,11 +49,9 @@ grunt test
 
 ## Props
 
-Thanks to:
-
-* JQuery URL Parser plugin by Mark Perkins, https://github.com/allmarkedup/jQuery-URL-Parser
 * Steven Levithan\'s uri parser http://blog.stevenlevithan.com/archives/parseuri
+* JQuery URL Parser plugin by Mark Perkins, https://github.com/allmarkedup/jQuery-URL-Parser
 * URI.js, https://github.com/medialize/URI.js
 * http://stackoverflow.com/a/3855394/500270
 
-For inspiration (and some of the necessary code) for building this.
+Thanks for the inspiration (and some of the necessary code) for building this.
