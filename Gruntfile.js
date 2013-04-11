@@ -18,12 +18,6 @@ module.exports = function(grunt) {
                 '* Copyright (c) <%= grunt.template.today("yyyy") %> Kiva Microfunds\n' +
                 '* Licensed under the MIT license.\n' +
                 '* https://github.com/kiva/simpleUri/blob/master/license.txt\n' +
-                '*\n' +
-                '* Inspired by (and snagged some code from) the following:\n' +
-                '* - JQuery URL Parser plugin by Mark Perkins, https://github.com/allmarkedup/jQuery-URL-Parser\n' +
-                '* - Steven Levithan\'s uri parser http://blog.stevenlevithan.com/archives/parseuri\n' +
-                '* - URI.js, https://github.com/medialize/URI.js\n' +
-                '* - http://stackoverflow.com/a/3855394/500270\n' +
                 '*/\n'
         }
 

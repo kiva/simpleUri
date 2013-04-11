@@ -13,4 +13,23 @@ Addresses four use-cases:
 
 ## Development
 
-@todo
+1. clone
+2. npm install
+3. code
+
+## Testing
+
+```
+grunt test
+```
+
+## Props
+
+Thanks to:
+
+* JQuery URL Parser plugin by Mark Perkins, https://github.com/allmarkedup/jQuery-URL-Parser
+* Steven Levithan\'s uri parser http://blog.stevenlevithan.com/archives/parseuri
+* URI.js, https://github.com/medialize/URI.js
+* http://stackoverflow.com/a/3855394/500270
+
+For inspiration (and some of the necessary code) for building this.
