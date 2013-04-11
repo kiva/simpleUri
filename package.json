@@ -19,7 +19,7 @@
         "url parser",
         "window.location"
     ],
-    "license": "BSD",
+    "license": "MIT",
     "readmeFilename": "readme.md",
     "devDependencies": {
         "buster": "~0.6.12",

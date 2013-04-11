@@ -1,15 +1,5 @@
 'use strict';
 
-/*
- * Inspired by JQuery URL Parser plugin, v2.2.1 by Mark Perkins, https://github.com/allmarkedup/jQuery-URL-Parser
- * (another awesome library: https://github.com/medialize/URI.js)
- *
- * And here: http://stackoverflow.com/a/3855394/500270
- *
- * And here: http://blog.stevenlevithan.com/archives/parseuri
- */
-
-
 /**
  *
  * @param {String|Boolean} uriString
