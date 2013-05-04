@@ -124,8 +124,8 @@ function uri(uriString, strictMode) {
 
     /**
      *
-     * @param windowName
-     * @param windowFeatures
+     * @param {String} windowName
+     * @param {String} windowFeatures
      * @return {window}
      */
     uriObj.open = function (windowName, windowFeatures) {
@@ -135,7 +135,7 @@ function uri(uriString, strictMode) {
 
     /**
      *
-     * @param bustCache
+     * @param {Boolean} bustCache
      */
     uriObj.load = function (bustCache) {
         if (uriObj.href === window.location.href) {
@@ -148,7 +148,7 @@ function uri(uriString, strictMode) {
 
     /**
      *
-     * @param bustCache
+     * @param {Boolean} bustCache
      */
     uriObj.reload = function (bustCache) {
         window.location.reload(bustCache);
@@ -165,7 +165,7 @@ function uri(uriString, strictMode) {
 
     /**
      *
-     * @param seg
+     * @param {Number} seg
      * @return {*}
      */
     uriObj.segment = function(seg) {
@@ -246,7 +246,7 @@ uri.parseUri = function (uriString, strictMode) {
 
 uri.config = {
 
-    // The parts of a uri
+    // The parts of a uri, taken from Steven Levithan\'s uri parser http://blog.stevenlevithan.com/archives/parseuri
     uriParts: ['href', 'protocol', 'authority', 'userInfo', 'user', 'password', 'host', 'port', 'relative', 'path', 'directory', 'file', 'query', 'hash']
     , strictMode: false
     , parser: {
