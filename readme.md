@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.org/kiva/simpleUri.png)](https://travis-ci.org/kiva/simpleUri)
 # simpleUri
 
 Addresses four use-cases:
