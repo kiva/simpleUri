@@ -1,5 +1,5 @@
 /**
-* simpleUri v0.2.0
+* simpleUri v0.2.1
 * Lightweight uri parsing and url manipulation library
 *
 * Copyright (c) 2013 Kiva Microfunds
@@ -136,8 +136,8 @@ define(function (require) {
     
         /**
          *
-         * @param windowName
-         * @param windowFeatures
+         * @param {String} windowName
+         * @param {String} windowFeatures
          * @return {window}
          */
         uriObj.open = function (windowName, windowFeatures) {
@@ -147,7 +147,7 @@ define(function (require) {
     
         /**
          *
-         * @param bustCache
+         * @param {Boolean} bustCache
          */
         uriObj.load = function (bustCache) {
             if (uriObj.href === window.location.href) {
@@ -160,7 +160,7 @@ define(function (require) {
     
         /**
          *
-         * @param bustCache
+         * @param {Boolean} bustCache
          */
         uriObj.reload = function (bustCache) {
             window.location.reload(bustCache);
@@ -177,7 +177,7 @@ define(function (require) {
     
         /**
          *
-         * @param seg
+         * @param {Number} seg
          * @return {*}
          */
         uriObj.segment = function(seg) {
@@ -258,7 +258,7 @@ define(function (require) {
     
     uri.config = {
     
-        // The parts of a uri
+        // The parts of a uri, taken from Steven Levithan\'s uri parser http://blog.stevenlevithan.com/archives/parseuri
         uriParts: ['href', 'protocol', 'authority', 'userInfo', 'user', 'password', 'host', 'port', 'relative', 'path', 'directory', 'file', 'query', 'hash']
         , strictMode: false
         , parser: {
