@@ -49,7 +49,6 @@ function uri(uriString, strictMode) {
         , paramString
         , prefix = type == 'query' ? '?' : '#';
 
-
         paramObj = $.extend({}, data, newData);
         paramString = prefix + $.param(paramObj);
 
@@ -58,13 +57,16 @@ function uri(uriString, strictMode) {
             return uri(paramString).reload();
         } else {
             if (type == 'query') {
-                paramString = paramString + '#' + uriObj.hash;
+                if (uriObj.hash) {
+                    paramString = paramString + '#' + uriObj.hash;
+                }
+
             } else {
+                if (uriObj.query)
                 paramString = '?' + uriObj.query + paramString;
             }
 
-            uriObj = uri(this.protocol + '://' + uriObj.host + uriObj.path + paramString);
-            return paramObj;
+            return uri(this.protocol + '://' + uriObj.host + uriObj.path + paramString);
         }
     };
 

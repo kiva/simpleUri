@@ -182,7 +182,7 @@ describe('.uri()', function () {
                 , hashParam: 'hpVal'
             };
 
-            expect(uri(mockUrl).hashParam({param1: 'override'})).toEqual(expectedParams);
+            expect(uri(mockUrl).hashParam({param1: 'override'}).hashParam()).toEqual(expectedParams);
         });
     });
 
@@ -208,7 +208,7 @@ describe('.uri()', function () {
                 , queryParam: 'qpVal'
             };
 
-            expect(uri(mockUrl).queryParam({param1: 'override'})).toEqual(expectedParams);
+            expect(uri(mockUrl).queryParam({param1: 'override'}).queryParam()).toEqual(expectedParams);
         });
     });
 });
