@@ -62,8 +62,9 @@ function uri(uriString, strictMode) {
                 }
 
             } else {
-                if (uriObj.query)
-                paramString = '?' + uriObj.query + paramString;
+                if (uriObj.query) {
+                    paramString = '?' + uriObj.query + paramString;
+                }
             }
 
             return uri(this.protocol + '://' + uriObj.host + uriObj.path + paramString);

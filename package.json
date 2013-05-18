@@ -1,6 +1,6 @@
 {
   "name": "simpleUri",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "Lightweight uri parsing and url manipulation library",
   "main": "index.js",
   "scripts": {
