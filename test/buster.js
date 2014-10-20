@@ -4,7 +4,7 @@ config['development'] = {
     env: 'browser'
     , rootPath: '../'
     , deps: [
-        'components/jquery/jquery.js'
+        'bower_components/jquery/jquery.js'
     ]
     , sources: ['src/simpleUri.js']
     , specs: ['test/spec/**/*.js']

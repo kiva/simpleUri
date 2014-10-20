@@ -1,5 +1,6 @@
 .DS_Store
+.idea
 npm-debug.log
-/components
+/bower_components
 /node_modules
 /test/coverage
