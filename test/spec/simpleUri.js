@@ -19,6 +19,12 @@ describe('uri', function () {
 	describe('.parseString()', function () {
 		it('parses a query string into a js object', function () {
 			expect(uri.parseString('cheese=delicious,fatty,smelly&pizza=cheesy')).toEqual({cheese: 'delicious,fatty,smelly', pizza: 'cheesy'});
+			expect(uri.parseString('q=cheesy:delicious,fatty,smelly;pizza:cheesy&enabled=true')).toEqual({q: 'cheesy:delicious,fatty,smelly;pizza:cheesy', enabled: 'true'});
+		});
+
+
+		it('parses unassigned query variables as values of an empty string', function () {
+			expect(uri.parseString('q&m')).toEqual({q: '', m: ''});
 		});
 	});
 

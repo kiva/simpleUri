@@ -191,7 +191,7 @@ function uri(uriString, strictMode) {
  */
 uri.parseString = function (str) {
     var i, pair, length
-    , arr = str.split(/&|;/)
+    , arr = str.split(/&/)
     , obj = {};
 
     if (!str) {
