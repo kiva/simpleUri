@@ -1,6 +1,4 @@
 /*global uri */
-'use strict';
-
 buster.spec.expose();
 
 console.log('json string', JSON.stringify(buster));
@@ -14,6 +12,8 @@ console.log('referee', buster.referee);
 console.log('*****123456789******');
 
 describe('uri', function () {
+	'use strict';
+
 	var expect = buster.expect;
 	var mockUrl = 'http://kiva.org/path/folder/file.html?param1=one&param2=two#param1=uno&param2=dos';
 
