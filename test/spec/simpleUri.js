@@ -7,7 +7,6 @@ buster.spec.expose();
 describe('uri', function () {
 //    var mockUri = '@todo';
 	var mockUrl = 'http://kiva.org/path/folder/file.html?param1=one&param2=two#param1=uno&param2=dos';
-	var expect = buster.expect;
 
 	describe('uri()', function () {
 		it('operates on the current url or a url that is passed into the kv.url() function', function () {
