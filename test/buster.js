@@ -1,3 +1,4 @@
+var buster = require('buster');
 var config = module.exports;
 
 config['development'] = {
