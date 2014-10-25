@@ -3,6 +3,8 @@
 
 buster.spec.expose();
 
+var expect = buster.expect;
+
 
 describe('uri', function () {
 //    var mockUri = '@todo';
