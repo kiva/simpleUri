@@ -2,11 +2,10 @@
 'use strict';
 
 buster.spec.expose();
-window.expect = buster.expect;
 
 
 describe('uri', function () {
-//    var mockUri = '@todo';
+	var expect = buster.referee.expect;
 	var mockUrl = 'http://kiva.org/path/folder/file.html?param1=one&param2=two#param1=uno&param2=dos';
 
 	describe('uri()', function () {
