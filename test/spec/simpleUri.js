@@ -2,8 +2,7 @@
 'use strict';
 
 buster.spec.expose();
-
-var expect = buster.expect;
+window.expect = buster.expect;
 
 
 describe('uri', function () {
