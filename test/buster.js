@@ -1,7 +1,7 @@
 var config = module.exports;
 
 config['development'] = {
-    env: 'browser'
+	environment: 'browser'
     , rootPath: '../'
     , deps: [
         'bower_components/jquery/jquery.js'
