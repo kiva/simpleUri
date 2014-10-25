@@ -5,5 +5,3 @@ before_install:
   - npm install -g buster@0.7.16
   - npm install -g grunt-cli
   - npm install -g bower@1.3.12
-before_script:
-  - npm install
