@@ -3,6 +3,13 @@
 
 buster.spec.expose();
 
+console.log('json string', JSON.stringify(buster));
+
+console.log('expect', buster.expect);
+
+console.log('referee', buster.referee);
+
+console.log('*****123456789******');
 
 describe('uri', function () {
 	var expect = buster.expect;
