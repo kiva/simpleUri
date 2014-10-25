@@ -5,6 +5,8 @@ buster.spec.expose();
 
 console.log('json string', JSON.stringify(buster));
 
+console.log('expect', buster.constructor.name);
+
 console.log('expect', buster.expect);
 
 console.log('referee', buster.referee);
