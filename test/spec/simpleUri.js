@@ -207,6 +207,16 @@ describe('uri', function () {
 			});
 
 
+			it('gets multiple hash parameters as an array', function () {
+				var mockUrl = 'http://kiva.org/path/folder/file.html#param=one&param=two&param=three'
+					, expectedParams = {
+						param: ['one', 'two', 'three']
+					};
+
+				expect(uri(mockUrl).param()).toEqual(expectedParams);
+			});
+
+
 			it('sets hash parameters', function () {
 				expectedParams = {
 					param1: 'override'
@@ -231,6 +241,16 @@ describe('uri', function () {
 				};
 
 				expect(uri(mockUrl).queryParam()).toEqual(expectedParams);
+			});
+
+
+			it('gets multiple query parameters as an array', function () {
+				var mockUrl = 'http://kiva.org/path/folder/file.html?param=one&param=two&param=three'
+				, expectedParams = {
+					param: ['one', 'two', 'three']
+				};
+
+				expect(uri(mockUrl).param()).toEqual(expectedParams);
 			});
 			
 
