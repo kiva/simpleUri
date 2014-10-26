@@ -226,6 +226,15 @@ describe('uri', function () {
 
 				expect(uri(mockUrl).hashParam({param1: 'override'}).hashParam()).toEqual(expectedParams);
 			});
+
+
+			it('sets an array of hash values', function () {
+				expectedParams = {
+					'one[]': ['1', '2', '3']
+				};
+
+				expect(uri('http://kiva.org').hashParam({one: [1, 2, 3]}).hashParam()).toEqual(expectedParams);
+			});
 		});
 
 
@@ -262,6 +271,15 @@ describe('uri', function () {
 				};
 
 				expect(uri(mockUrl).queryParam({param1: 'override'}).queryParam()).toEqual(expectedParams);
+			});
+
+
+			it('sets an array of query values', function () {
+				expectedParams = {
+					'one[]': ['1', '2', '3']
+				};
+
+				expect(uri('http://kiva.org').queryParam({one: [1, 2, 3]}).queryParam()).toEqual(expectedParams);
 			});
 		});
 	});
