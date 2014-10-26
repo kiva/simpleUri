@@ -50,6 +50,7 @@ describe('uri', function () {
 				expect(uri('https://someurl.com').protocol).toBe('https');
 			});
 
+
 			it('is an empty string if the protocol is not specified', function () {
 				expect(uri('someurl.com').protocol).toBe('');
 			});
@@ -146,9 +147,11 @@ describe('uri', function () {
 				expect(uri(mockUrl).segment()).toEqual(['path', 'folder', 'file.html']);
 			});
 
+
 			it('returns the segment corresponding to the index requested', function () {
 				expect(uri(mockUrl).segment(1)).toBe('path');
 			});
+
 
 			it('returns the segment corresponding to the negative index requested', function () {
 				expect(uri(mockUrl).segment(-1)).toBe('file.html');
@@ -157,7 +160,19 @@ describe('uri', function () {
 
 
 		describe('.param', function () {
-			var mockUrl = 'http://kiva.org/path/folder/file.html?param1=one&param2=two&queryParam=qpVal#param1=uno&param2=dos&hashParam=hpVal'
+			it('gets parameters', function () {
+				var mockUrl = 'http://kiva.org/path/folder/file.html?queryParam=qpVal#hashParam=hpVal'
+				, expectedParams = {
+					queryParam: 'qpVal'
+					, hashParam: 'hpVal'
+				};
+
+				expect(uri(mockUrl).param()).toEqual(expectedParams);
+			});
+
+
+			it('overrides query parameters with hash parameters', function () {
+				var mockUrl = 'http://kiva.org/path/folder/file.html?param1=one&param2=two&queryParam=qpVal#param1=uno&param2=dos&hashParam=hpVal'
 				, expectedParams = {
 					param1: 'uno'
 					, param2: 'dos'
@@ -165,9 +180,9 @@ describe('uri', function () {
 					, hashParam: 'hpVal'
 				};
 
-			it('gets parameters', function () {
 				expect(uri(mockUrl).param()).toEqual(expectedParams);
 			});
+
 
 			it('cannot set parameters, will throw if you try', function () {
 				expect(function () {
@@ -179,9 +194,9 @@ describe('uri', function () {
 
 		describe('.hashParam', function () {
 			var expectedParams
-				, mockUrl = 'http://kiva.org/path/folder/file.html?param1=one&param2=two&queryParam=qpVal#param1=uno&param2=dos&hashParam=hpVal';
+			, mockUrl = 'http://kiva.org/path/folder/file.html?param1=one&param2=two&queryParam=qpVal#param1=uno&param2=dos&hashParam=hpVal';
 
-			it('gets parameters', function () {
+			it('gets hash parameters', function () {
 				expectedParams = {
 					param1: 'uno'
 					, param2: 'dos'
@@ -191,7 +206,8 @@ describe('uri', function () {
 				expect(uri(mockUrl).hashParam()).toEqual(expectedParams);
 			});
 
-			it('sets parameters', function () {
+
+			it('sets hash parameters', function () {
 				expectedParams = {
 					param1: 'override'
 					, param2: 'dos'
@@ -205,9 +221,9 @@ describe('uri', function () {
 
 		describe('.queryParam', function () {
 			var mockUrl = 'http://kiva.org/path/folder/file.html?param1=one&param2=two&queryParam=qpVal#param1=uno&param2=dos&hashParam=hpVal'
-				, expectedParams;
+			, expectedParams;
 
-			it('gets parameters', function () {
+			it('gets query parameters', function () {
 				expectedParams = {
 					param1: 'one'
 					, param2: 'two'
@@ -216,8 +232,9 @@ describe('uri', function () {
 
 				expect(uri(mockUrl).queryParam()).toEqual(expectedParams);
 			});
+			
 
-			it('sets parameters', function () {
+			it('sets query parameters', function () {
 				expectedParams = {
 					param1: 'override'
 					, param2: 'two'
