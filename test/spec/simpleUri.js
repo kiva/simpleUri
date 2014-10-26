@@ -159,7 +159,7 @@ describe('uri', function () {
 		});
 
 
-		describe('.param', function () {
+		describe('.param()', function () {
 			it('gets parameters', function () {
 				var mockUrl = 'http://kiva.org/path/folder/file.html?queryParam=qpVal#hashParam=hpVal'
 				, expectedParams = {
@@ -192,7 +192,7 @@ describe('uri', function () {
 		});
 
 
-		describe('.hashParam', function () {
+		describe('.hashParam()', function () {
 			var expectedParams
 			, mockUrl = 'http://kiva.org/path/folder/file.html?param1=one&param2=two&queryParam=qpVal#param1=uno&param2=dos&hashParam=hpVal';
 
@@ -229,7 +229,7 @@ describe('uri', function () {
 		});
 
 
-		describe('.queryParam', function () {
+		describe('.queryParam()', function () {
 			var mockUrl = 'http://kiva.org/path/folder/file.html?param1=one&param2=two&queryParam=qpVal#param1=uno&param2=dos&hashParam=hpVal'
 			, expectedParams;
 

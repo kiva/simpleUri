@@ -60,7 +60,6 @@ function uri(uriString, strictMode) {
                 if (uriObj.hash) {
                     paramString = paramString + '#' + uriObj.hash;
                 }
-
             } else {
                 if (uriObj.query) {
                     paramString = '?' + uriObj.query + paramString;
