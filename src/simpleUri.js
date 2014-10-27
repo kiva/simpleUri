@@ -60,7 +60,6 @@ function uri(uriString, strictMode) {
                 if (uriObj.hash) {
                     paramString = paramString + '#' + uriObj.hash;
                 }
-
             } else {
                 if (uriObj.query) {
                     paramString = '?' + uriObj.query + paramString;
@@ -185,31 +184,62 @@ function uri(uriString, strictMode) {
 
 
 /**
+ * Parses a paramsObject key/value pair.
+ * If the key already exists in the paramsObject, it turns it's value into an array
+ *
+ * @param {string} paramKey
+ * @param {string} paramValue
+ * @param {Object} paramsObj
+ * @returns {Object}
+ * @private
+ */
+uri._parseParam = function (paramKey, paramValue, paramsObj) {
+	var existingValue = paramsObj[paramKey]
+	, newValue;
+
+	if (paramValue) {
+		paramValue = decodeURIComponent(paramValue.replace(/\+/g, ' '));
+		if (typeof existingValue == 'undefined') {
+			newValue = paramValue;
+		} else {
+			if (existingValue instanceof Array) {
+				existingValue.push(paramValue);
+			} else {
+				existingValue = [existingValue];
+				existingValue.push(paramValue);
+			}
+
+			newValue = existingValue;
+		}
+	} else if (paramKey) {
+		newValue = '';
+	}
+
+	return newValue;
+};
+
+
+/**
  *
  * @param str
  * @return {Object}
  */
 uri.parseString = function (str) {
-    var i, pair, length
+    var i, pair
     , arr = str.split(/&/)
-    , obj = {};
+    , paramsObj = {};
 
     if (!str) {
-        return obj;
+        return paramsObj;
     }
 
+	// Iterate over each pair
     for (i = 0; i < arr.length; ++i) {
-        pair = arr[i].split('=');
-        length = pair.length;
-
-        if (length >= 2) {
-            obj[pair[0]] = decodeURIComponent(pair[length - 1].replace(/\+/g, ' '));
-        } else if (length == 1) {
-            obj[pair[0]] = '';
-        }
+	    pair = arr[i].split('=');
+	    paramsObj[pair[0]] = uri._parseParam(pair[0], pair[1], paramsObj);
     }
 
-    return obj;
+    return paramsObj;
 };
 
 
