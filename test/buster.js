@@ -8,10 +8,9 @@ config['development'] = {
     ]
     , sources: ['src/simpleUri.js']
     , specs: ['test/spec/**/*.js']
-    , extensions: [ require('buster-coverage') ]
-    , "buster-coverage": {
+    , extensions: [ require('buster-istanbul') ]
+    , "buster-istanbul": {
         outputDirectory: "test/coverage"
         , format: "lcov"
-        , combinedResultsOnly: true
     }
 };
